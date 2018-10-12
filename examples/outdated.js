@@ -28,6 +28,8 @@ var sum = pass(5)(Math.sqrt)(Math.floor)(value=>{return value * 2})({});
 //creating a function
 var squaredFloorTimesTwo = (num)=>pass(num)(Math.sqrt)(Math.floor)(value=>{return value * 2})({});
 
+var squaredFloorTimesTwo = link(Math.sqrt,Math.floor,value=>value * 2);
+
 console.log(`Sum: ${sum}`);
 //           Sum: 2
 

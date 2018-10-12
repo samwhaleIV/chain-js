@@ -2,11 +2,17 @@
 function IsChainBreaker(values) { //basically, this checks if there is a single parameter and it is "{}"
     if(values.length !== 1) return false;
     const value = values[0];
-    if(typeof(value) !== "object") return false;
+    if(typeof value !== "object") return false;
     if(value == null) return false;
     return Object.keys(value).length === 0;
 }
-
+function link(...methods) {
+    return function(...base) {
+        return methods.reduce(
+            (value,method) => method.apply(null,value),base
+        )
+    };
+}
 //This is a one off function that allows for greater declaritive flow and works great in conjunction with the functional chains.
 //The first function can be multi-parameterized, but the subsequent calls works off of single objects
 function chain(...base) {
@@ -26,7 +32,7 @@ function chain(...base) {
     const repeaterCreator = function(base) {
         return function(method) {
             return (function(base) {
-                switch(typeof(method)) {
+                switch(typeof method) {
                     case "function":
                         base = method(base); //This invokes the method and updates the base for when we are going to return it later
                         return repeaterCreator(base);
@@ -42,7 +48,7 @@ function chain(...base) {
     //This is a mirror of repeater creator. It is mirroed to allow for method.apply, allowing the first function of the chain to be multi-parameterized
     return (function(base) {
         return function(method) { //Duping this method allows the first-function multi-parameterization
-            switch(typeof(method)) {
+            switch(typeof method) {
                 case "function":
                     base = method.apply(null,base); //This expands base because it is an array here, but in the future base will be a single object
                     return repeaterCreator(base);
@@ -102,7 +108,7 @@ Function.prototype.multi = function(...args) {
 
 //({}) can be called to release the collection chain's accumulated array if you don't trust the garbage collector to do its job
 //(newsflash, it will do it's job, but the option is there for consistency with the other chain functions)
-//Perhaps you could also have some fancy, messy loop that checks if the collection chain can still be used by a 'typeof() === "function"'
+//Perhaps you could also have some fancy, messy loop that checks if the collection chain can still be used by a 'typeof val === "function"'
 Function.prototype.collect = function(...args) {                          
     const method = this;
     const repeaterCreator = function(results) {
@@ -123,9 +129,41 @@ Function.prototype.collect = function(...args) {
     };
     return repeaterCreator([method(...args)]);
 }
+//Array items 1-6
+Array.prototype.first = function() {
+    return this[0];
+}
+Array.prototype.second = function() {
+    return this[1];
+}
+Array.prototype.third = function() {
+    return this[2];
+}
+Array.prototype.fourth = function() {
+    return this[3];
+}
+Array.prototype.fifth = function() {
+    return this[4];
+}
+Array.prototype.sixth = function() {
+    return this[5];
+}
+//Array items Last to (last - 5);
 Array.prototype.last = function() {
     return this[this.length - 1];
 }
-Array.prototype.first = function() {
-    return this[0];
+Array.prototype.secondRight = function() {
+    return this[this.length - 2];
+}
+Array.prototype.thirdRight = function() {
+    return this[this.length - 3];
+}
+Array.prototype.fourthRight = function() {
+    return this[this.length - 4];
+}
+Array.prototype.fifthRight = function() {
+    return this[this.length - 5];
+}
+Array.prototype.sixthRight = function() {
+    return this[this.length - 6];
 }

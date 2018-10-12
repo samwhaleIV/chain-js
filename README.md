@@ -18,6 +18,25 @@ Depending on if we are calculating astro-rocket-zoology or animating a drop down
 
 Cue `chain-js`
 
+### Right of the box
+Natively, JavaScript already allows a lot of your functional programming needs. To name a few, there's `map`, `filter`, `reduce`, `forEach`, and no limit to the functions that you can create yourself. Here is a function that uses some of these list based "pure functions":
+```js
+const AreAnagrams = function(...words) {
+    return (sets => {
+        return (firstSet =>
+            sets.reduce(
+                (setValue,letterSet) => 
+                setValue && letterSet.reduce(
+                    (letterValue,letter,index) =>
+                    letterValue && letter === firstSet[index]
+                ,true)
+            ,true)
+        )(sets.shift());
+    })(words.map(word=>Array.from(word).sort()));
+}
+```
+
+
 ### Reinventing the wheel but not more than anyone else has
 
 You can already make a self-returning function in JavaScript very easily because functions are first-class. And there is no shortage of libraries that do all that and more, but the principle is simple and it looks something like this, a function that returns an uncalled function:
@@ -42,24 +61,5 @@ var chain = repeatableFunction("I'm a chain link!")
 
 chain("Actually, you're not last, I'm last");
 ```
-Okay, so how do we introduce state? Well, in this limited fuctional approach, we will need to store a variable somewhere.
 
-(if you're unfamiliar with the `...` operator, see [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax))
-```js
-var total = 0;
-function increment(...values) {
-    for(var i = 0;i < values.length;i++) {
-        total += values[i];
-    }
-    return increment;
-}
-```
-
- This function is still rather imperative, though. 
- 
- So, let's change that. First, let's make our for loop declarative using [`forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach). We can make replace our entire loop with this line:
- ```js
- values.forEach((value)=>total+=value)
- ```
- 
- # TOO BE CONTINUED
+#TOO BE CONTINUED . THIS IS ALL VERY W.I.P.
