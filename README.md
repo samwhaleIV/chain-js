@@ -21,12 +21,12 @@ let verboserSyntax = value=> {
 ```
 Nice, the order of events is clear, but we can still do better.
 
-***Linking*** is for creating compounds functions without the explicitness of doing it yourself 
+*Linking* is for creating compounds functions without the explicitness of doing it yourself 
 ```js
 let squaredFloorTimesTwo = link(Math.sqrt,Math.floor,value=>value * 2);
 console.log(squaredFloorTimesTwoTimes(26))
 ```
-***Chaining*** is like linking but on the fly. It's used to get a value.
+*Chaining* is like linking but on the fly. It's used to get a value.
 ```js
 console.log(chain(26)(Math.sqrt)(Math.floor)(value=>{value * 2})({}))
 ```
@@ -131,3 +131,4 @@ var chain = console.log.multi("I'm a chain link!")
 
 chain("Never modify the prototype of built in types!")("Fite me")
 ```
+# Too be continued, more documentation and features incoming!
