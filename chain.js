@@ -67,7 +67,7 @@ Function.prototype.sequence = function(base) {
         return function(...values) {
             return (function(base) {
                 if(IsChainBreaker(values)) {
-                    return base; //For a sequence chain, we return a final value. If all values or a specific value is needed, a stream collection chain is needed.
+                    return base; //For a sequence chain, we can return a final value. If all values or a specific value is needed, a stream or collection chain is needed.
                 }
                 base = method(base,...values);
                 return repeaterCreator(base);
@@ -166,4 +166,25 @@ Array.prototype.fifthRight = function() {
 }
 Array.prototype.sixthRight = function() {
     return this[this.length - 6];
+}
+//A resistance value of 1 results in all values staying in place.
+//A resistance value of 0.3 results in values staying in place 30% of the time.
+//A resistance value of 0 results in values moving either up or down 100% of the timea a la 50% + 50% = 100%
+Array.prototype.randomSort = function(resistance=0.3) { 
+    //We allocate and compute these ahead of time to save cycles in every iteration of sort.
+    //The array could be quite large, so we don't want to add much more overhead than sort already has.
+    const floor = 0.5 - tolerance/2;
+    const ceiling = floor + tolerance;
+    return this.sort(() => {
+        const random = Math.random();
+        //We don't use <= or >= in these because it is veryyyy unlikely (and pointless) that
+        //the random value will be exact to the decimal point. And, if the resistance is 1, the floor would always be hit.
+        if(random < floor) {
+            return -1;
+        } else if(random > ceiling) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
 }
