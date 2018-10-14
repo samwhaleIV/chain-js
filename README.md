@@ -1,11 +1,11 @@
 # chain-js
 `chain-js` is a JavaScript library that builds off of default types to give you repeating functions, curried functions and more without the requirement for modifying the functions themselves.
 
-###tl;dr
+### tl;dr
 
 Don't want to read? Suit yourself.
 
-#Chaining and linking
+**Chaining and linking**
 ```js
 let standardSyntax = (value) => Math.floor(Math.sqrt(value)) * 2;
 ```
@@ -29,17 +29,17 @@ console.log(squaredFloorTimesTwoTimes(26))
 console.log(chain(26)(Math.sqrt)(Math.floor)(value=>{value * 2})({}))
 ```
 Fun fact, you can link links or links of links! Go wild, be fearless! The overhead monster won't bite you too hard
-#Streaming and collecting
+**Streaming and collecting**
 ```js
-    //Collecting: For when you want to capture all values of executing a function multiple times. Returns a list.
-    (value=>console.log(value))(Math.random())(42)("Stream and collection chains are very closely related").second()
-    //Expected return value: 42
-
-    //Streaming: Like collecting but for when you need to use the return values before the next invocation of the chain.
-    Math.random.stream(
-        (value)=>console.log(value)
-    )(Math.random())("Something something nerdy reference to the number 42")
-    //Expected return value: undefined/none
+//Collecting: For when you want to capture all values of executing a function multiple times. Returns a list.
+(value=>console.log(value))(Math.random())(42)("Stream and collection chains are very closely related").second()
+//Expected return value: 42
+    
+//Streaming: Like collecting but for when you need to use the return values before the next invocation of the chain.
+Math.random.stream(
+    (value)=>console.log(value)
+)(Math.random())("Something something nerdy reference to the number 42")
+//Expected return value: undefined/none
 ```
 
 ### Different perspectives
