@@ -34,12 +34,12 @@ Fun fact, you can link links or links of links! Go wild, be fearless! The overhe
 
 **Streaming and collecting**
 
-***Collecting*** is for when you want to capture all values of executing a function multiple times. It returns a list.
+*Collecting* is for when you want to capture all values of executing a function multiple times. It returns a list.
 ```js
 (value=>console.log(value)).collect(Math.random())(42)("Stream and collect are closely related").second()
 //Expected return value (in addition to console writes): 42
 ```
-***Streaming*** is like collecting but for when you need to use the return values before the next invocation of the chain.
+*Streaming* is like collecting but for when you need to use the return values before the next invocation of the chain.
 ```js
 Math.random.stream(
     (value)=>console.log(value)
