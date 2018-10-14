@@ -21,12 +21,12 @@ let verboserSyntax = value=> {
 ```
 Nice, the order of events is clear, but we can still do better.
 
-Linking is for creating compounds functions without the explicitness of doing it yourself 
+***Linking*** is for creating compounds functions without the explicitness of doing it yourself 
 ```js
 let squaredFloorTimesTwo = link(Math.sqrt,Math.floor,value=>value * 2);
 console.log(squaredFloorTimesTwoTimes(26))
 ```
-Chaining is like linking but on the fly. It's used to get a value.
+***Chaining*** is like linking but on the fly. It's used to get a value.
 ```js
 console.log(chain(26)(Math.sqrt)(Math.floor)(value=>{value * 2})({}))
 ```
@@ -34,12 +34,12 @@ Fun fact, you can link links or links of links! Go wild, be fearless! The overhe
 
 **Streaming and collecting**
 
-Collecting is for when you want to capture all values of executing a function multiple times. It returns a list.
+***Collecting*** is for when you want to capture all values of executing a function multiple times. It returns a list.
 ```js
 (value=>console.log(value)).collect(Math.random())(42)("Stream and collect are closely related").second()
 //Expected return value (in addition to console writes): 42
 ```
-Streaming is like collecting but for when you need to use the return values before the next invocation of the chain.
+***Streaming*** is like collecting but for when you need to use the return values before the next invocation of the chain.
 ```js
 Math.random.stream(
     (value)=>console.log(value)
@@ -53,7 +53,7 @@ As you already may know, JavaScript is a very versatile programming language, al
 The key factors to this are:
 - Background
 
-What background does the developer have? Did they used to be a C++ dev? Have they known nothing ever but Scala? Is JavaScript their first language? Not everything thinks or writes the same, and all these factors and more influence your programming style. That's part of what makes JavaScript so adoptable and easy to learn, and also why there are so many strong opinions against it. Because JavaScript can serve so many purposes, sometimes it's not as well suited as another language that has much clearer and defined purpose. But let's not focus on that here. This library is about widening the possibilties, not closing them.
+What background does the developer have? Did they used to be a C++ dev? Have they known nothing ever but Scala? Is JavaScript their first language? Not everyone thinks or writes the same as everyone else, and all these factors and more influence your programming style. That's part of what makes JavaScript so adoptable and easy to learn, and also why there are so many strong opinions against it. Because JavaScript can serve so many purposes, sometimes it's not as well suited as another language that has much clearer and defined purpose. But let's not focus on that here. This library is about widening the possibilties, not closing them.
 - Environment
 
 Web client JavaScript doesn't serve the same functions as web [`node.js`](https://github.com/nodejs/node) JavaScript does. In node, you can expect some form of callback hell. On the web, you can expect some kind of event listener hell. Different environments call for different responses.
