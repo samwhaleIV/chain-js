@@ -3,7 +3,7 @@
 
 ### tl;dr
 
-Don't want to read? Suit yourself.
+Don't want to read? Functional JavaScript is cool. Got your attention? Continue on.
 
 **Chaining and linking**
 
