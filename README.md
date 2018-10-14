@@ -6,6 +6,7 @@
 Don't want to read? Suit yourself.
 
 **Chaining and linking**
+
 ```js
 let standardSyntax = (value) => Math.floor(Math.sqrt(value)) * 2;
 ```
@@ -20,7 +21,7 @@ let verboserSyntax = value=> {
 ```
 Nice, the order of events is clear, but we can still do better.
 
-Linking os for creating compounds functions without the explicitness of doing it yourself 
+Linking is for creating compounds functions without the explicitness of doing it yourself 
 ```js
 let squaredFloorTimesTwo = link(Math.sqrt,Math.floor,value=>value * 2);
 console.log(squaredFloorTimesTwoTimes(26))
@@ -32,6 +33,7 @@ console.log(chain(26)(Math.sqrt)(Math.floor)(value=>{value * 2})({}))
 Fun fact, you can link links or links of links! Go wild, be fearless! The overhead monster won't bite you too hard
 
 **Streaming and collecting**
+
 Collecting is for when you want to capture all values of executing a function multiple times. It returns a list.
 ```js
 (value=>console.log(value)).collect(Math.random())(42)("Stream and collect are closely related").second()
@@ -117,7 +119,7 @@ chain("Actually, you're not last, I'm last");
 ```
 But what if we don't want to create new a function for this?
 
-Cue `chain-js`
+**Cue `chain-js`**
 
 Much to the dismay of thousands of JavaScript developers groaning in the background, extending default types by accessing the prototype is a beautiful thing.
 
@@ -127,5 +129,5 @@ var chain = console.log.multi("I'm a chain link!")
     ("Library incompatibilities!")
     ("Hurr durrrrr muh default objects")
 
-chain("Never modify the prototype of built in types!")("Ahem, stop telling me what to do. Don't like it? Don't use it")
+chain("Never modify the prototype of built in types!")("Fite me")
 ```
