@@ -19,27 +19,30 @@ let verboserSyntax = value=> {
 }
 ```
 Nice, the order of events is clear, but we can still do better.
+
+Linking os for creating compounds functions without the explicitness of doing it yourself 
 ```js
-//Linking: Create compounds functions without the explicitness of doing it yourself
 let squaredFloorTimesTwo = link(Math.sqrt,Math.floor,value=>value * 2);
 console.log(squaredFloorTimesTwoTimes(26))
 ```
+Chaining is like linking but on the fly. It's used to get a value.
 ```js
-//Chaining: Like linking but on the fly. Used to get a value.
 console.log(chain(26)(Math.sqrt)(Math.floor)(value=>{value * 2})({}))
 ```
 Fun fact, you can link links or links of links! Go wild, be fearless! The overhead monster won't bite you too hard
+
 **Streaming and collecting**
+Collecting is for when you want to capture all values of executing a function multiple times. It returns a list.
 ```js
-//Collecting: For when you want to capture all values of executing a function multiple times. Returns a list.
-(value=>console.log(value))(Math.random())(42)("Stream and collection chains are very closely related").second()
-//Expected return value: 42
-    
-//Streaming: Like collecting but for when you need to use the return values before the next invocation of the chain.
+(value=>console.log(value)).collect(Math.random())(42)("Stream and collect are closely related").second()
+//Expected return value (in addition to console writes): 42
+```
+Streaming is like collecting but for when you need to use the return values before the next invocation of the chain.
+```js
 Math.random.stream(
     (value)=>console.log(value)
 )(Math.random())("Something something nerdy reference to the number 42")
-//Expected return value: undefined/none
+//Expected return value (in addition to console writes): undefined/none
 ```
 
 ### Different perspectives
