@@ -1,11 +1,12 @@
 # chain-js
 `chain-js` is a JavaScript library that builds off of default types to give you repeating functions, curried functions and more without the requirement for modifying the functions themselves.
 
-###tl;dr
+### tl;dr
 
-Don't want to read? Suit yourself.
+Don't want to read? Functional JavaScript is cool. Got your attention? Continue on.
 
-#Chaining and linking
+**Chaining and linking**
+
 ```js
 let standardSyntax = (value) => Math.floor(Math.sqrt(value)) * 2;
 ```
@@ -19,27 +20,31 @@ let verboserSyntax = value=> {
 }
 ```
 Nice, the order of events is clear, but we can still do better.
+
+*Linking* is for creating compounds functions without the explicitness of doing it yourself 
 ```js
-//Linking: Create compounds functions without the explicitness of doing it yourself
 let squaredFloorTimesTwo = link(Math.sqrt,Math.floor,value=>value * 2);
 console.log(squaredFloorTimesTwoTimes(26))
 ```
+*Chaining* is like linking but on the fly. It's used to get a value.
 ```js
-//Chaining: Like linking but on the fly. Used to get a value.
 console.log(chain(26)(Math.sqrt)(Math.floor)(value=>{value * 2})({}))
 ```
 Fun fact, you can link links or links of links! Go wild, be fearless! The overhead monster won't bite you too hard
-#Streaming and collecting
-```js
-    //Collecting: For when you want to capture all values of executing a function multiple times. Returns a list.
-    (value=>console.log(value))(Math.random())(42)("Stream and collection chains are very closely related").second()
-    //Expected return value: 42
 
-    //Streaming: Like collecting but for when you need to use the return values before the next invocation of the chain.
-    Math.random.stream(
-        (value)=>console.log(value)
-    )(Math.random())("Something something nerdy reference to the number 42")
-    //Expected return value: undefined/none
+**Streaming and collecting**
+
+*Collecting* is for when you want to capture all values of executing a function multiple times. It returns a list.
+```js
+(value=>console.log(value)).collect(Math.random())(42)("Stream and collect are closely related").second()
+//Expected return value (in addition to console writes): 42
+```
+*Streaming* is like collecting but for when you need to use the return values before the next invocation of the chain.
+```js
+Math.random.stream(
+    (value)=>console.log(value)
+)(Math.random())("Something something nerdy reference to the number 42")
+//Expected return value (in addition to console writes): undefined/none
 ```
 
 ### Different perspectives
@@ -48,7 +53,7 @@ As you already may know, JavaScript is a very versatile programming language, al
 The key factors to this are:
 - Background
 
-What background does the developer have? Did they used to be a C++ dev? Have they known nothing ever but Scala? Is JavaScript their first language? Not everything thinks or writes the same, and all these factors and more influence your programming style. That's part of what makes JavaScript so adoptable and easy to learn, and also why there are so many strong opinions against it. Because JavaScript can serve so many purposes, sometimes it's not as well suited as another language that has much clearer and defined purpose. But let's not focus on that here. This library is about widening the possibilties, not closing them.
+What background does the developer have? Did they used to be a C++ dev? Have they known nothing ever but Scala? Is JavaScript their first language? Not everyone thinks or writes the same as everyone else, and all these factors and more influence your programming style. That's part of what makes JavaScript so adoptable and easy to learn, and also why there are so many strong opinions against it. Because JavaScript can serve so many purposes, sometimes it's not as well suited as another language that has much clearer and defined purpose. But let's not focus on that here. This library is about widening the possibilties, not closing them.
 - Environment
 
 Web client JavaScript doesn't serve the same functions as web [`node.js`](https://github.com/nodejs/node) JavaScript does. In node, you can expect some form of callback hell. On the web, you can expect some kind of event listener hell. Different environments call for different responses.
@@ -114,7 +119,7 @@ chain("Actually, you're not last, I'm last");
 ```
 But what if we don't want to create new a function for this?
 
-Cue `chain-js`
+**Cue `chain-js`**
 
 Much to the dismay of thousands of JavaScript developers groaning in the background, extending default types by accessing the prototype is a beautiful thing.
 
@@ -124,5 +129,6 @@ var chain = console.log.multi("I'm a chain link!")
     ("Library incompatibilities!")
     ("Hurr durrrrr muh default objects")
 
-chain("Never modify the prototype of built in types!")("Ahem, stop telling me what to do. Don't like it? Don't use it")
+chain("Never modify the prototype of built in types!")("Fite me")
 ```
+# Too be continued, more documentation and features incoming!
