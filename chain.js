@@ -268,14 +268,14 @@ Object.prototype.setIf = function(key,value,comparator,elseValue,elseKey) {
 }
 
 Number.prototype.max = function(max) {
-	if(this > max) {
-		return max;
+    if(this > max) {
+        return max;
     }
-	return this;
+    return this;
 }
 Number.prototype.min = function(min) {
-	if(this < min) {
-		return min;
+    if(this < min) {
+         return min;
     }
-	return this;
+    return this;
 }
